@@ -1,7 +1,5 @@
+//my first NN
 
-//https://medium.com/@14prakash/back-propagation-is-very-simple-who-made-it-complicated-97b794c97e5c
-//https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/
-//http://stevenmiller888.github.io/mind-how-to-build-a-neural-network/
 const chalk = require("chalk")
 const _createEmpty = Symbol("_createEmpty")
 const _createWith = Symbol("_createWith")
@@ -129,6 +127,14 @@ class Matrix {
         }
         return Matrix.from(trans)
     }
+    multiply(b) {
+        const multiply = (a, b) => a * b
+        return this.add(b, multiply)
+    }
+    addition(b) {
+        const addition = (a, b) => a + b
+        return this.add(b, addition)
+    }
     add(b, func) {
         const temp = Matrix.reCreate(this.full)
         const B = Matrix.reCreate(b.full)
@@ -139,7 +145,7 @@ class Matrix {
         }
         return Matrix.from(temp)
     }
-    sigmoid() {
+    get sigmoid() {
         const S = (x) => 1 / (1 + Math.exp(-x))
         const temp = Matrix.reCreate(this.full)
         for( let row in temp) {
@@ -270,16 +276,23 @@ let biasOutput = Matrix.randoms([1,1])
 
 function feed_forward(input, target, lr) {
     const learningRateF = (x) => x * lr
+    // Matrix.from() -> creates a 2d matrix
+    // Matrix.dot() -> multiplies matricies by row*column
+    // Matrix.apply() -> adds a function to all elements in the matrix
+    // Matrix.add() -> adds two matricies together using a function modifier 
+    //         L_ Matrix.multiply() and Matrix.addition()
+    // Matrix.T -> Transposes the matrix - inverting the shape row*column -> column*row
+    // Matrix.sigmoid acts like apply but with a pre-set function
 
     //Forward Feed
 
     const inp = Matrix.from(input)
 
-    const hidden = Matrix.dot(inp, w1)
+    const hidden = Matrix.dot(inp, w1).sigmoid
 
-    const output = Matrix.dot(hidden.apply(S), w2.T)
+    const output = Matrix.dot(hidden, w2.T)
 
-    const result = output.apply(S)
+    const result = output.sigmoid
 
     //Backward Feed
 
@@ -289,16 +302,20 @@ function feed_forward(input, target, lr) {
 
     const deltaOutputSum = Matrix.from([[deriOutput * error]])
 
-    const deltaW2 = Matrix.dot(deltaOutputSum, hidden.apply(S)) // <-- the last piece 
+    // Wants input * weights after activation -- So the hidden layers result
+    const deltaW2 = Matrix.dot(deltaOutputSum, hidden) // <-- the last piece 
 
-    const deltaHiddenSum = deltaOutputSum.dot(w2).add(hidden.apply(Sder), multiply)
+    // Wants input * weights before the activation -- So the hidden layers pre true output 
+    const deltaHiddenSum = deltaOutputSum.dot(w2).multiply(
+            inp.dot(w1).apply(Sder)
+        )
 
     const deltaW1 = inp.T.dot(deltaHiddenSum)
 
     // Uppdate our Weigths
 
-    let newW1 = w1.add(deltaW1.apply(learningRateF), addition)
-    let newW2 = w2.add(deltaW2.apply(learningRateF), addition)
+    let newW1 = w1.addition(deltaW1.apply(learningRateF))
+    let newW2 = w2.addition(deltaW2.apply(learningRateF))
 
     w1 = Matrix.from(newW1.full)
     w2 = Matrix.from(newW2.full)
@@ -343,8 +360,9 @@ function TrainNN(iterations = 5000, lr) {
     }
 }
 
-let w1 = Matrix.from([[0.1, 0.4, 0.8],[0.3,0.6,0.9]])
-let w2 = Matrix.from([[0.56, 0.22, 0.192]])
+let w1 = Matrix.randoms([2,3])
+let w2 = Matrix.randoms([1,3])
+
 const iterations = 10000
 const lr = 0.3
 TrainNN(iterations, lr)
