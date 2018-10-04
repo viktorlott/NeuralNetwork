@@ -48,10 +48,10 @@ class Matrix {
             for( let x in this.full[i]) {
                 text.push(" " + this.full[i][x] + " ")
             }
-            text.push("]\n ")
+            if(i < this.full.length - 1) text.push("],\n ")
         }
-        const constructedText = `array(
- ${text.join("")})`
+        const constructedText = `\nOutput: [
+ ${text.join("")}]\n]`
 
         return constructedText
     }
@@ -260,9 +260,6 @@ const sub = (a, b) => a - b
 //                       [0,0]]
 // const Targets = [0,1,1,0]
 
-
-
-
 const ib = Matrix.from([[1,1]])
 let bias = x => y => y + x
 let biasOutput = Matrix.randoms([1,1])
@@ -373,6 +370,11 @@ test([1,1],0)
 test([0,1],1)
 test([1,0],1)
 test([0,0],0)
+
+console.log(chalk.blue("\nMy Weights\n"))
+console.log("- Weigths 1", w1.view)
+console.log("")
+console.log("- Weigths 2", w2.view)
 
 
 
