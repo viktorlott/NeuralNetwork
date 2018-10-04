@@ -271,7 +271,7 @@ let biasOutput = Matrix.randoms([1,1])
 // }
 
 
-function feed_forward(input, target, lr) {
+function feed_backward(input, target, lr) {
     const learningRateF = (x) => x * lr
     // Matrix.from() -> creates a 2d matrix
     // Matrix.dot() -> multiplies matricies by row*column
@@ -331,7 +331,7 @@ function logError(e1,e2,e3,e4) {
 
 }
 
-function test(inpu, targ) {
+function feed_forward(inpu, targ) {
     const inputs = Matrix.from([inpu])
 
     const hidden = inputs.dot(w1)
@@ -347,18 +347,19 @@ function test(inpu, targ) {
 function TrainNN(iterations = 5000, lr) {
     let e1,e2,e3,e4
     for (let m = 0; m < iterations; m++) {
-            e1 = feed_forward([[1,1]],0, lr)
-            e2 = feed_forward([[0,1]],1, lr)
-            e3 = feed_forward([[1,0]],1, lr)
-            e4 = feed_forward([[0,0]],0, lr)
+            e1 = feed_backward([[1,1]], 0, lr)
+            e2 = feed_backward([[0,1]], 1, lr)
+            e3 = feed_backward([[1,0]], 1, lr)
+            e4 = feed_backward([[0,0]], 0, lr)
             if(m % 100 === 0) {
                 logError(e1,e2,e3,e4)
             }
     }
 }
 
-let w1 = Matrix.randoms([2,3])
-let w2 = Matrix.randoms([1,3])
+
+let w1 = Matrix.randoms([2,5])
+let w2 = Matrix.randoms([1,5])
 
 const iterations = 10000
 const lr = 0.3
@@ -366,10 +367,10 @@ TrainNN(iterations, lr)
 
   
 console.log("  My Inputs and results")
-test([1,1],0)
-test([0,1],1)
-test([1,0],1)
-test([0,0],0)
+feed_forward([1,1],0)
+feed_forward([0,1],1)
+feed_forward([1,0],1)
+feed_forward([0,0],0)
 
 console.log(chalk.blue("\nMy Weights\n"))
 console.log("- Weigths 1", w1.view)
