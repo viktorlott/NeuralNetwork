@@ -3,7 +3,21 @@
 const chalk = require("chalk")
 const _createEmpty = Symbol("_createEmpty")
 const _createWith = Symbol("_createWith")
-
+class lcg {
+	constructor(seed = 42) {
+		this.seed = seed
+		this.m = 139968.0
+		this.a = 3877.0
+        this.c = 29573.0
+    }
+    seed(seed) {
+        this.seed = seed
+    }
+	random() {
+		this.lastnumber = (this.lastnumber * this.a + this.c) % this.m
+		return this.lastnumber / this.m
+	}
+}
 class Matrix {
     constructor(data, size, full) {
         this.data = data || []
