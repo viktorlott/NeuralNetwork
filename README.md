@@ -1,4 +1,4 @@
-My first Neural Network.
+My first Neural Network 100% coded in Javascript.
 
 I built my own matrix calculator for this project.
 
