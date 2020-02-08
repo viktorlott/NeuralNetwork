@@ -19,6 +19,8 @@ Slowly but surely i started to fit the pieces together and successfully built th
 
 Everything is created from scratch.
 
+![Alt Text](https://github.com/nexriz/NeuralNetwork/blob/master/Feb-08-2020%2012-21-56.gif)
+
 
 These guides help me with this project.
   - https://medium.com/@14prakash/back-propagation-is-very-simple-who-made-it-complicated-97b794c97e5c
@@ -26,4 +28,4 @@ These guides help me with this project.
   - http://stevenmiller888.github.io/mind-how-to-build-a-neural-network/
 
 
-![Alt Text](https://github.com/nexriz/NeuralNetwork/blob/master/Feb-08-2020%2012-21-56.gif)
+
