@@ -12,7 +12,7 @@ Slowly but surely i started to fit the pieces together and successfully built th
 
 ## This is my first XOR Neural Network - 100% coded in Javascript.
 
-### Tools
+#### Tools
   - Matrix library (Built from scratch)
   - XOR NN (Build from scratch)
   - Logging
@@ -30,4 +30,5 @@ Slowly but surely i started to fit the pieces together and successfully built th
   - http://stevenmiller888.github.io/mind-how-to-build-a-neural-network/
 
 
-
+#### My CV
+[Link to my CV](http://viktorlott.surge.sh)
