@@ -19,6 +19,8 @@ Slowly but surely i started to fit the pieces together and successfully built th
 
 Everything is created from scratch.
 
+> The closed the output (result) is to the target, the more accurate it is to predict the outcome.
+
 ![Alt Text](https://github.com/nexriz/NeuralNetwork/blob/master/Feb-08-2020%2012-21-56.gif)
 
 
