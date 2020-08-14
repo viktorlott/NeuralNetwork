@@ -7,8 +7,8 @@ This project was meant for learning purposes only. I wanted to understand how a 
   - Understand the basic math that surrounds neuralnets.
 
 
-I started by learning about matrix calculations and how they fit into neural networks. After building my own very basic version of NumPy (matrix) i started reading up on how i could use matrices to represent nodes in a network. How dot operation worked, and how to feed data to a network. After this i started with the difficult part, backpropagation. This took awhile for me to understand because i lack the intermediate math skills of calculus. 
-Slowly but surely i started to fit the pieces together and successfully built this simple XOR neural network from scratch in javascript. Im happy to share this project even though i have forgotten most of what i've learned.
+I started by learning about matrix calculations and how they are used within neural networks. After building my own very basic version of NumPy (matrix) i started reading up on how i could use matrices to represent nodes in a network. How dot operation worked, and how to feed data to a network. After this i started with the difficult part, backpropagation. This took awhile for me to grasp and understand because i lack the intermediate math skills of calculus. 
+Slowly but surely i started to fit the pieces together and successfully built this simple XOR neural network from scratch in javascript. Im happy to share this project even though i would like to expand on it further.
 
 ## This is my first XOR Neural Network - 100% coded in Javascript.
 
